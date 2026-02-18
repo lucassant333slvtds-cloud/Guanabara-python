@@ -1,32 +1,41 @@
 from random import randint
-N_usuario = P_I = computador = cont = total = comparador = resultado = 0 
+from time import sleep
+N_usuario = computador = cont = total = comparador = resultado = 0 
+P_I = " "
+vitoria = 0 
 total = computador + N_usuario
-
-
-
 print("P A R    O U    I M P A R ")
-N_usuario = int(input("Dgigite um valor entre 1 e 10: "))
-P_I = str(input("Par ou impar? (P/I) ")).strip()
-computador = randint(0,10)
-total = N_usuario + computador
+
+
+
 
 while True:
-    if total % 2 == 0: # PAR
-        resultado = "Par"
-        if resultado == P_I:
+    N_usuario = int(input("Dgigite um valor entre 1 e 10: "))
+    computador = randint(0,10)
+    total = N_usuario + computador
+    
+    while P_I not in "PI": #par ou impar
+        P_I = str(input("Par ou impar? (P/I) ")).strip()[0]
+    print(f"Vc jogou {N_usuario} e o computaodr jogou {computador}. Total de {total}")
+
+    if P_I == "P":
+        if total % 2 == 0: 
             print("Acertou!!")
-            break
+            vitoria += 1
+                
         else:
-            print('errou!!!!')
+            print('VOCÊ PERDEU!!!')   
             break
 
-    else: #IMPAR
-        resultado = "Impar"
-        if resultado == P_I:
-            print("VOCÊ VENCEU!!")
-            break    
+    elif P_I == "I":
+        if total % 2 == 0: 
+            print('VOCÊ PERDEU!!!')
+            print(f"Pois {total} é PAR!! ")
+            vitoria += 1
+                
         else:
-            print('VOCÊ PERDEU!!!\n TENTE NOVAMENTE!')
+            print("Acertou!!")
+            print("Pois {total} é IMPAR")
+            vitoria += 1
             break
 
-print(f"Vc jogou {N_usuario} e o computaodr jogou {computador}. Total de {total}\n DEU {resultado}")
